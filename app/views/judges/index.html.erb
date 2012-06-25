@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Name</th>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +10,7 @@
 
 <% @judges.each do |judge| %>
   <tr>
+    <td><%= judge.name %></td>
     <td><%= link_to 'Show', judge %></td>
     <td><%= link_to 'Edit', edit_judge_path(judge) %></td>
     <td><%= link_to 'Destroy', judge, confirm: 'Are you sure?', method: :delete %></td>
