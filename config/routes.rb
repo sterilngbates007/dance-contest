@@ -1,4 +1,8 @@
 DanceContest::Application.routes.draw do
+  resources :judges
+
+  resources :contestants
+
   resources :rounds
 
   # The priority is based upon order of creation:
