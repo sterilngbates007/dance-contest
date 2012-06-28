@@ -1,6 +1,6 @@
 class Round < ActiveRecord::Base
-  def score (places, num_couples, num_judges)
-    places = places
+  def score (places_ary, num_couples, num_judges)
+    places = places_ary
     ncouples = num_couples
     njudges = num_judges
     
