@@ -5,6 +5,7 @@ class CreateScores < ActiveRecord::Migration
       t.timestamps
       t.integer :contestant_id
       t.integer :judge_id
+      t.integer :round_id
     end
   end
 end

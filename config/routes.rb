@@ -1,4 +1,6 @@
 DanceContest::Application.routes.draw do
+  resources :contests
+
   resources :judges
 
   resources :contestants

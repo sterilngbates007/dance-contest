@@ -1,21 +1,10 @@
-<%= form_for(@round) do |f| %>
-  <% if @round.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
-
-      <ul>
-      <% @round.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for(@round) do |f| %>
+	<%= f.association :contest %>
+	<%= f.association :contestant %>
+	<%= f.association :judge %>
+	<%= f.input :cycle, :label => "Round Cycle"%>
+	<%= f.input :place, :label => "Placement byJudge" %>
+	<%= @round.name %><br />
+	<%= f.button :submit %>
 <% end %>
+

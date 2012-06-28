@@ -1,16 +1,21 @@
 <h1>Listing rounds</h1>
 
-<table>
+<table border="1">
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Contest</th>
+    <th>Round Cycle</th>
+    <th>Judge</th>
+    <th>Contestant</th>
+    <th>Place</th>
   </tr>
 
 <% @rounds.each do |round| %>
   <tr>
-    <td><%= round.name %></td>
+    <td><%= round.contest.name %></td>
+    <td><%= round.cycle %></td>
+    <td><%= round.judge.name %></td>
+    <td><%= round.contestant.name %></td>
+    <td><%= round.place %></td>
     <td><%= link_to 'Show', round %></td>
     <td><%= link_to 'Edit', edit_round_path(round) %></td>
     <td><%= link_to 'Destroy', round, confirm: 'Are you sure?', method: :delete %></td>

@@ -11,12 +11,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625224618) do
+ActiveRecord::Schema.define(:version => 20120628162649) do
 
   create_table "contestants", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "contestants_contests", :id => false, :force => true do |t|
+    t.integer "contestant_id"
+    t.integer "contest_id"
+  end
+
+  create_table "contests", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contests_judges", :id => false, :force => true do |t|
+    t.integer "judge_id"
+    t.integer "contest_id"
   end
 
   create_table "judges", :force => true do |t|
@@ -27,8 +43,13 @@ ActiveRecord::Schema.define(:version => 20120625224618) do
 
   create_table "rounds", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "cycle"
+    t.integer  "place"
+    t.integer  "contest_id"
+    t.integer  "contestant_id"
+    t.integer  "judge_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "scores", :force => true do |t|
@@ -37,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20120625224618) do
     t.datetime "updated_at",    :null => false
     t.integer  "contestant_id"
     t.integer  "judge_id"
+    t.integer  "round_id"
   end
 
 end

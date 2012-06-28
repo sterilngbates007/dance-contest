@@ -1,4 +1,11 @@
 class Round < ActiveRecord::Base
+  belongs_to :contest
+  belongs_to :contestant
+  belongs_to :judge
+#  has_many :scores
+#  has_many :contestats, :through => :scores
+#  has_many :judges, :through => :scores
+#  attr_accessible :name, :contestats
   def score (places_ary, num_couples, num_judges)
     places = places_ary
     ncouples = num_couples
