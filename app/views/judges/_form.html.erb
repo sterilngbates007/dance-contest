@@ -1,21 +1,51 @@
-<%= form_for(@judge) do |f| %>
-  <% if @judge.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@judge.errors.count, "error") %> prohibited this judge from being saved:</h2>
+<%= simple_form_for @judge do |f|%>
+	<%= f.input :name%>
+	<%= f.association :contestants %>
+	number of judge scores: <%= @judge.scores.length %><br />
+	judge.id: <%= @judge.id %><br />
+	judge.place where... <%= @judge.scores.select(:place).where(:contestant_id => 1 )%>
+	<br />
+	<%= f.simple_fields_for :contestants do |builder| %>
+		<p>
+			<%= builder.input :name %>
 
-      <ul>
-      <% @judge.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+		</p>
+	<% end %>
+	<%= f.simple_fields_for :scores do |builder| %>
+		<p>
+			<%= builder.input :place %> 
+		</p>
+	<% end %>
+	<br />
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  	<% Contestant.all.each do |list| %>
+  		<%= check_box_tag "judge[contestant_ids][]", list.id, @judge.contestant_ids.include?(list.id) %>
+  		<%= list.name %><br />
+  	<% end %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <br />
+    <div class="field">
+  	<% Contestant.all.each do |list| %>
+  		<%= list.name %> 
+  		<%= list.scores.where(:judge_id => @judge.id) %> <br />
+  		<%= list.scores.all%> <br />
+  	<% end %>
   </div>
+    <div class="field">
+  	<% Contestant.all.each do |list| %>
+		<%= f.simple_fields_for :scores do |builder| %>
+		<p>
+			<%= builder.input :place %> 
+			<%= list.name %>
+		</p>
+		<% end %>
+ 	<% end %>
+  </div>
+
+
+	<%= f.button :submit %>
 <% end %>
+
+
+
+
