@@ -1,0 +1,6 @@
+<%= simple_form_for(@contest) do |f| %>
+	<%= f.input :name %>
+	<%= f.association :contestants %>
+	<%= f.association :judges %>
+	<%= f.button :submit %>
+<% end %>
