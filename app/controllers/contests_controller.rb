@@ -80,4 +80,15 @@ class ContestsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  # PROCESS /contests/1
+  # PROCESS /contests/1.json
+  def placement
+    @contest = Contest.find(params[:id])
+    
+ #   respond_to do |format|
+ #         format.html # process.html.erb
+ #         format.json { render json: @contest }
+ #   end
+  end
 end

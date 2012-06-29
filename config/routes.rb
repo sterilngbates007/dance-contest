@@ -1,4 +1,6 @@
 DanceContest::Application.routes.draw do
+  match 'contests/:id/placement' => 'contests#placement', :as => :placement
+
   resources :contests
 
   resources :judges
